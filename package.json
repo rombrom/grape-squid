@@ -1,0 +1,39 @@
+{
+  "name": "grape-squid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently npm:start:*",
+    "start:bsc": "node -r dotenv/config lib/bsc.js",
+    "start:eth": "node -r dotenv/config lib/eth.js",
+    "start:gql": "squid-graphql-server",
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf lib",
+    "docker:down": "docker compose down",
+    "docker:up": "docker compose up -d",
+    "gen:typeor": "squid-typeorm-codegen",
+    "gen:migration": "squid-typeorm-migration generate",
+    "migrate": "npx squid-typeorm-migration apply",
+    "abi:grape": "squid-evm-typegen src/abi 0xe1dC516B1486Aba548eecD2947A11273518434a4",
+    "abi:presale": "squid-evm-typegen src/abi 0xEE72F1035C706478F84AB9480E45B427Aa6B6682",
+    "abi:seeder": "npx squid-evm-typegen --etherscan-api https://api.bscscan.com src/abi 0x301fecdF050156dA30547F21C6C9e33aA779f701",
+    "test": "node analysis.js"
+  },
+  "keywords": [],
+  "author": "Rommert Zijlstra",
+  "license": "ISC",
+  "dependencies": {
+    "@subsquid/archive-registry": "^3.3.0",
+    "@subsquid/evm-processor": "^1.12.2",
+    "@subsquid/graphql-server": "^4.5.0",
+    "@subsquid/typeorm-migration": "^1.3.0",
+    "@subsquid/typeorm-store": "^1.2.6"
+  },
+  "devDependencies": {
+    "@subsquid/evm-typegen": "^3.2.4",
+    "@subsquid/typeorm-codegen": "^1.3.3",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,19 @@
+type Withdraw @entity {
+  id: ID!
+  investor: String! @index
+  amount: BigInt!
+  bonusAmount: BigInt!
+}
+
+type Transfer @entity {
+  id: ID!
+  from: String! @index
+  to: String! @index
+  tokenId: BigInt!
+}
+
+type TicketsBought @entity {
+  id: ID!
+  wallet: String!
+  count: BigInt!
+}
